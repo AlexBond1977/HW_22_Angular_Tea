@@ -107,7 +107,7 @@
           </div>
 
           <div class="col-12 mt-3">
-            <button type="button" class="btn btn-primary px-4 hvr-grow-shadow" id="create_order" (click)="createOrder()">
+            <button type="submit" class="btn btn-primary px-4 hvr-grow-shadow" id="create_order" (click)="createOrder()" [disabled]="isLoading">
               Отправить
             </button>
             <div id="card-error" class="invalid-feedback" *ngIf="orderNotSuccess">Произошла ошибка. Попробуйте еще раз.</div>

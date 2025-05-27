@@ -23,6 +23,7 @@ export class OrderComponent implements OnInit, OnDestroy {
   private subscriptionOrder: Subscription | null = null;
   public orderSuccess: boolean = false;
   public orderNotSuccess: boolean = false;
+  public isLoading: boolean = false;
 
   constructor(private activatedRoute: ActivatedRoute,
               private fb: FormBuilder,
@@ -68,16 +69,22 @@ export class OrderComponent implements OnInit, OnDestroy {
         address: addressInputValue,
         comment: commentInputValue
       }
+      this.isLoading = true;
       this.http.post<{ success: boolean, message?: string }>('https://testologia.ru/order-tea', data)
         .subscribe(response => {
+          this.isLoading = false;
           if (response.success) {
             this.orderSuccess = true;
           } else {
             this.orderNotSuccess = true;
+            setTimeout(() => {
+              this.orderNotSuccess = false;
+            }, 3000);
           }
         })
     } else {
-      alert('Заполните форму полностью')
+      alert('Заполните форму полностью');
+      this.isLoading = false;
     }
 
 
