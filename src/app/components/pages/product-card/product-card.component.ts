@@ -9,7 +9,7 @@ import {ProductType} from "../../../types/product.type";
 export class ProductCardComponent implements OnInit {
   @Input() product: ProductType;
 
-  constructor() {
+  public constructor() {
     this.product = {
       id: 0,
       image: '',
@@ -19,7 +19,7 @@ export class ProductCardComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
   }
 
 }

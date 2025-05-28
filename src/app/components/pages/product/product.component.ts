@@ -12,12 +12,12 @@ import {Subscription} from "rxjs";
 })
 export class ProductComponent implements OnInit, OnDestroy {
   @Input() id: number | undefined;
-  private products: ProductType[] = [];
-  product: ProductType;
-  subscriptionProducts: Subscription | null = null;
-  subscriptionParams: Subscription | null = null;
+  public products: ProductType[] = [];
+  public product: ProductType;
+  private subscriptionProducts: Subscription | null = null;
+  private subscriptionParams: Subscription | null = null;
 
-  constructor(private activatedRoute: ActivatedRoute,
+  public constructor(private activatedRoute: ActivatedRoute,
               private productsService: ProductsService,
               private router: Router) {
 
@@ -30,7 +30,7 @@ export class ProductComponent implements OnInit, OnDestroy {
     }
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.subscriptionParams = this.activatedRoute.params
       .subscribe({
         next: (params: Params) => {
@@ -59,7 +59,7 @@ export class ProductComponent implements OnInit, OnDestroy {
       })
   }
 
-  ngOnDestroy() {
+  public ngOnDestroy() {
     this.subscriptionParams?.unsubscribe();
     this.subscriptionProducts?.unsubscribe();
   }

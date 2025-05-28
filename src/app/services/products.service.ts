@@ -7,12 +7,12 @@ import {Observable} from "rxjs";
   providedIn: 'root'
 })
 export class ProductsService {
-  products: ProductType[] = [];
+  public products: ProductType[] = [];
 
-  constructor(private http: HttpClient) {
+  public constructor(private http: HttpClient) {
   }
 
-  getProducts(): Observable<ProductType[]> {
+  public getProducts(): Observable<ProductType[]> {
     return this.http.get<ProductType[]>('https://testologia.ru/tea')
   }
 }

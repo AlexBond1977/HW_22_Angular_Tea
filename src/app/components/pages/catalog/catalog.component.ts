@@ -12,12 +12,12 @@ import {tap} from "rxjs";
 export class CatalogComponent implements OnInit {
   public products: ProductType[] = [];
 
-  constructor(private http: HttpClient, private productsService: ProductsService) {
+  public constructor(private http: HttpClient, private productsService: ProductsService) {
   }
 
-  loading: boolean = false;
+  protected loading: boolean = false;
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.loading = true;
 
     this.productsService.getProducts()

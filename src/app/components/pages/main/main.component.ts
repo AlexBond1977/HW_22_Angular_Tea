@@ -12,12 +12,11 @@ declare var $: any;
   ]
 })
 export class MainComponent implements OnInit, OnDestroy {
-
   private observable: Observable<boolean>;
   private subscription: Subscription | null = null;
   public popupOnView: boolean = false;
 
-  constructor() {
+  public constructor() {
     this.observable = new Observable((observer) => {
       const timeOut = setTimeout(() => {
         observer.next(this.popupOnView = true)
@@ -29,11 +28,9 @@ export class MainComponent implements OnInit, OnDestroy {
         }
       }
     });
-
-
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     $("#accordion").accordion({
       collapsible: true,
       heightStyle: 'content',
@@ -42,7 +39,7 @@ export class MainComponent implements OnInit, OnDestroy {
     this.subscription = this.observable.subscribe();
   }
 
-  ngOnDestroy() {
+  public ngOnDestroy() {
     this.subscription?.unsubscribe();
   }
 

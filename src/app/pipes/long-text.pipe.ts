@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class LongTextPipe implements PipeTransform {
 
-  transform(value: string): string {
+  public transform(value: string): string {
     if (value.length <= 150) {
       return value;
     } else {

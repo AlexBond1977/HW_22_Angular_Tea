@@ -21,16 +21,16 @@ export class OrderComponent implements OnInit, OnDestroy {
     comment: ['', []]
   })
   private subscriptionOrder: Subscription | null = null;
-  public orderSuccess: boolean = false;
-  public orderNotSuccess: boolean = false;
-  public isLoading: boolean = false;
+  protected orderSuccess: boolean = false;
+  protected orderNotSuccess: boolean = false;
+  protected isLoading: boolean = false;
 
-  constructor(private activatedRoute: ActivatedRoute,
-              private fb: FormBuilder,
-              private http: HttpClient) {
+  public constructor(private activatedRoute: ActivatedRoute,
+                     private fb: FormBuilder,
+                     private http: HttpClient) {
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
 
     this.subscriptionOrder = this.activatedRoute.queryParams
       .subscribe((params: Params) => {
@@ -43,11 +43,11 @@ export class OrderComponent implements OnInit, OnDestroy {
       })
   }
 
-  ngOnDestroy() {
+  public ngOnDestroy() {
     this.subscriptionOrder?.unsubscribe();
   }
 
-  createOrder() {
+  public createOrder() {
     const titleInputValue: string | null = this.formValues.get('productTitle')?.value as string;
     const nameInputValue: string | null = this.formValues.get('name')?.value as string;
     const lastNameInputValue: string | null = this.formValues.get('lastName')?.value as string;
@@ -68,7 +68,7 @@ export class OrderComponent implements OnInit, OnDestroy {
         product: titleInputValue,
         address: addressInputValue,
         comment: commentInputValue
-      }
+      };
       this.isLoading = true;
       this.http.post<{ success: boolean, message?: string }>('https://testologia.ru/order-tea', data)
         .subscribe(response => {
@@ -86,8 +86,5 @@ export class OrderComponent implements OnInit, OnDestroy {
       alert('Заполните форму полностью');
       this.isLoading = false;
     }
-
-
   }
-
 }
