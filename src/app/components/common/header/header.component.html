@@ -17,8 +17,9 @@
         </li>
       </ul>
       <form class="d-flex" role="search">
-        <input class="form-control me-2 text-dark fs-base" type="search" placeholder="Поиск чая" aria-label="Search">
-        <button class="btn hvr-curl-bottom-right hvr-buzz btn-outline-primary" type="submit">Найти</button>
+        <input #searchField [(ngModel)]="searchTerm" class="form-control me-2 text-dark fs-base" type="search" placeholder="Поиск чая" aria-label="Search">
+        <button class="btn btn-primary ms-2" type="button" (click)="onFindClick(searchField.value)">Найти</button>
+        <button class="btn btn-light ms-2" type="button" (click)="clearSearch(searchField)" *ngIf="searchTerm">Сбросить</button>
       </form>
     </div>
   </div>
